@@ -17,7 +17,7 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
-		  <p>{ (new Date()).toString() } </p>
+		  <p>{ fetch ('/api/date') } </p>
         </a>
       </header>
     </div>
