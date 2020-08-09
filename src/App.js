@@ -3,6 +3,30 @@ import logo from './logo.svg';
 import './App.css';
 
 export class App extends Component {
+  static defaultProps = { currentDate: ""};
+	
+  getDate = async () => {
+    const response = await fetch('/api/date');
+	console.log(`getDate: returned from fetch`);
+    const body = await response.json();
+	console.log(`getDate: got response.json() ; response.status = ${response.status}`);
+    if (response.status !== 200) {
+		throw Error(body.message);
+	}
+    return body;
+  };	
+	
+  componentDidMount() {
+    this.getDate()
+	  .then(res => {
+		console.log(`componentDidMount: res = ${res}`);
+		//this.props.currentDate = res.toString();
+		this.props.currentDate = res();
+		console.log(`componentDidMount: this.props.currentDate = ${this.props.currentDate}`);
+	  })
+      .catch(err => console.log(err));
+  }  
+  
   render() {	
   return (
     <div className="App">
@@ -19,7 +43,7 @@ export class App extends Component {
         >
           Learn React
         </a>
-			<p>{ (new Date()).toString() } </p>		
+			<p>{ this.props.currentDate } </p>		
       </header>
     </div>
   );
