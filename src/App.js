@@ -17,6 +17,7 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
+		  <p>{ (new Date()).toString() } </p>
         </a>
       </header>
     </div>
