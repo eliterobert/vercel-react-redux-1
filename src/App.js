@@ -17,7 +17,11 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
-		  <p>{ fetch('/api/date').then(response => response.toString()) } </p>
+		  { 
+		  fetch('/api/date').then(response => { 
+		   <p>response.toString()</p> 
+		  }
+		  }		  
         </a>
       </header>
     </div>
